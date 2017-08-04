@@ -1,0 +1,12 @@
+h3 Список курсов
+
+table.table.table-striped
+  - @courses.each do |course|
+    tr
+      td.col-md-1= course.name
+      td= course.description
+      td.col-md-1
+        - if course.user_courses.pluck(:user_id).include?(current_user.id) && course.user_courses.find_by(user: current_user).try(:passed).to_s == 'false'
+          = link_to "Пройти", course_themes_path(course.id), class: "btn btn-default btn-sm"
+        - elsif course.user_courses.pluck(:user_id).include?(current_user.id) && course.user_courses.find_by(user: current_user).try(:passed).to_s == 'true'
+          = button_tag "Пройдено", class: "btn btn-default btn-sm disabled"
