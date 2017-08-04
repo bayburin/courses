@@ -9,5 +9,16 @@ class ThemesController < ApplicationController
     authorize @theme, :show?
   end
 
-  def
+  def pass_theme
+    @course = Course.includes(:themes, :user_courses).find(params[:course_id])
+    @theme = @course.themes.find(params[:id])
+    @passed_theme = @theme.user_course_themes.new(user_course: @course.user_courses.find_by(user: current_user))
+    if @passed_theme.save
+      flash[:notice] = 'Тема изучена'
+      redirect_to course_themes_path(@theme.course.id)
+    else
+      flash.now[:alert] = @passed_theme.errors.full_messages.join('. ')
+      render :show
+    end
+  end
 end

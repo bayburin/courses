@@ -8,7 +8,7 @@ RSpec.feature 'Show all themes of the selected course', %q{
 
   given(:user) { create :user }
   given(:course) { create :course, users: [user] }
-  let(:theme) { course.themes.first }
+  given(:theme) { course.themes.first }
 
   scenario 'User tries see detail of specified theme' do
     sign_in user
@@ -18,6 +18,7 @@ RSpec.feature 'Show all themes of the selected course', %q{
 
     expect(page).to have_content "Тема '#{theme.name}'."
     expect(page).to have_content theme.content
-    expect(page).to have_link('Изучено', href: course_themes_path(course.id))
+    expect(page).to have_link('Отмена', href: course_themes_path(course.id))
+    expect(page).to have_selector('input[type="submit"][value="Изучено"]')
   end
 end

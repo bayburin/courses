@@ -1,4 +1,5 @@
 h3 Тема '#{@theme.name}'.
 p= @theme.content
 
-= link_to "Изучено", course_themes_path(@theme.course.id), class: "btn btn-success"
+= button_to "Изучено", pass_theme_course_theme_path(@theme.course.id, @theme.id), class: "btn btn-success"
+= link_to "Отмена", course_themes_path(@theme.course.id), class: "btn btn-default"

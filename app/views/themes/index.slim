@@ -4,6 +4,10 @@ table.table.table-striped
     tr
       td.col-md-1= theme.name
       td= theme.description
-      td.col-md-1= link_to "Изучить", course_theme_path(@course.id, theme.id), class: "btn btn-default btn-sm"
+      - if theme.user_course_themes.find_by(user_course: @course.user_courses.find_by(user: current_user)).nil?
+        td.col-md-1= link_to "Изучить", course_theme_path(@course.id, theme.id), class: "btn btn-default btn-sm"
+      - else
+        /td.col-md-1= link_to "Изучено", course_theme_path(@course.id, theme.id), class: "btn btn-default btn-sm"
+        td.col-md-1= button_tag "Изучено", class: "btn btn-default btn-sm disabled"
 
 = link_to "Вернуться к списку курсов", courses_path, class: "btn btn-default"

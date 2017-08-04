@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   root 'courses#index'
 
   resources :courses do
-    resources :themes
+    resources :themes do
+      post 'pass_theme', to: 'themes#pass_theme', on: :member
+    end
   end
 end
