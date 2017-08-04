@@ -1,0 +1,4 @@
+h3 Тема '#{@theme.name}'.
+p= @theme.content
+
+= link_to "Изучено", course_themes_path(@theme.course.id), class: "btn btn-success"

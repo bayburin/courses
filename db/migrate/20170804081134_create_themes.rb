@@ -3,7 +3,8 @@ class CreateThemes < ActiveRecord::Migration[5.0]
     create_table :themes do |t|
       t.references :course
       t.string :name
-      t.string :description
+      t.text :description
+      t.text :content
       t.timestamps
     end
   end

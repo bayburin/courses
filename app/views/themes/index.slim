@@ -4,6 +4,6 @@ table.table.table-striped
     tr
       td.col-md-1= theme.name
       td= theme.description
-      td.col-md-1= button_tag 'Изучить', class: 'btn btn-default btn-sm'
+      td.col-md-1= link_to "Изучить", course_theme_path(@course.id, theme.id), class: "btn btn-default btn-sm"
 
 = link_to "Вернуться к списку курсов", courses_path, class: "btn btn-default"
