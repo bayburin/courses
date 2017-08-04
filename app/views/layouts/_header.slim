@@ -2,9 +2,7 @@ nav.navbar.navbar-default
   .container-fluid
     .collapse.navbar-collapse
       ul.nav.navbar-nav.navbar-left
-        li
-          a href=courses_path Список курсов
+        li= link_to "Список курсов", courses_path
 
       ul.nav.navbar-nav.navbar-right
-        li
-          a href='' Выход
+        li= link_to "Выход", destroy_user_session_path, method: "DELETE"
