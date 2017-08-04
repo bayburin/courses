@@ -1,0 +1,9 @@
+h3 Курс '#{@course.name}'. Список тем
+table.table.table-striped
+  - @course.themes.each do |theme|
+    tr
+      td.col-md-1= theme.name
+      td= theme.description
+      td.col-md-1= button_tag 'Изучить', class: 'btn btn-default btn-sm'
+
+= link_to "Вернуться к списку курсов", courses_path, class: "btn btn-default"
