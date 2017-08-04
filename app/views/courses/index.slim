@@ -1,0 +1,7 @@
+h3 Список курсов
+table.table.table-striped
+  - @courses.each do |course|
+    tr
+      td.col-md-1= course.name
+      td= course.description
+      td.col-md-1= button_tag 'Пройти', class: 'btn btn-default btn-sm'
