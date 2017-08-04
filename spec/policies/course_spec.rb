@@ -17,7 +17,7 @@ describe CoursePolicy do
     context 'with user role' do
       let(:user) { create :user }
 
-      context 'and when admin allows access' do
+      context 'and when course not passed' do
         let(:course) { create :course, users: [user] }
 
         it 'grants access to the course' do

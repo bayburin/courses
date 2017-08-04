@@ -11,6 +11,10 @@ class User < ApplicationRecord
 
   before_validation :set_default_role
 
+  def pass_course?(course)
+    course.themes.count == course.user_courses.find_by(user: self).user_course_themes.count
+  end
+
   def has_role?(role_sym)
     role.name.to_sym == role_sym.to_sym
   end

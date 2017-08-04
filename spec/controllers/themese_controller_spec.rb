@@ -47,9 +47,25 @@ RSpec.describe ThemesController, type: :controller do
         expect { subject }.to change(UserCourseTheme, :count).by(1)
       end
 
-      it 'redirect_to course_themes_path' do
-        subject
-        expect(response).to redirect_to course_themes_path(course.id)
+      context 'and when all course passed' do
+        before do
+          course.themes.each_with_index do |theme, index|
+            next if index.zero?
+            UserCourseTheme.create(theme: theme, user_course: course.user_courses.find_by(user: user))
+          end
+        end
+
+        it 'redirect_to course_themes_path' do
+          subject
+          expect(response).to redirect_to courses_path
+        end
+      end
+
+      context 'and when not all course passed' do
+        it 'redirect_to course_themes_path' do
+          subject
+          expect(response).to redirect_to course_themes_path(course.id)
+        end
       end
     end
 
